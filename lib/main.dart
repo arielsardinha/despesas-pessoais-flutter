@@ -1,8 +1,11 @@
+import 'dart:html';
 import 'dart:math';
 import 'package:expenses/components/transection_form.dart';
 import 'package:expenses/components/transection_list.dart';
 import 'package:expenses/models/transection.dart';
 import 'package:flutter/material.dart';
+import 'package:seo_renderer/helpers/utils.dart';
+import 'package:seo_renderer/renderers/text_renderer/text_renderer.dart';
 
 void main(List<String> args) {
   runApp(const EpensesApp());
@@ -13,7 +16,8 @@ class EpensesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      navigatorObservers: [routeObserver],
       debugShowCheckedModeBanner: false,
       home: MyHomePage(),
     );
@@ -71,11 +75,14 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                const SizedBox(
+                SizedBox(
                   width: double.infinity,
                   child: Card(
                     color: Colors.blue,
-                    child: Text('Grafico'),
+                    child: TextRenderer(
+                      element: ParagraphElement(),
+                      text: const Text('paragrafo'),
+                    ),
                     elevation: 5,
                   ),
                 ),
